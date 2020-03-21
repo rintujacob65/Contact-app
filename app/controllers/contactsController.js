@@ -8,7 +8,6 @@ module.exports.list = (req, res) => {
     const limit = parseInt(req.query.limit)
 
     const startIndex = (page - 1) * limit
-    const endIndex = page * limit
     Contact.find({ user: req.user._id }).limit(limit).skip(startIndex).
     populate({ path : 'user', select :'username email'})
       .then((contact) => {
